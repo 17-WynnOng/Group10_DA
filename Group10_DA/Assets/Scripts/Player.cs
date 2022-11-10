@@ -5,6 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float speed;
+    public float damage;
     // Start is called before the first frame update
     void Start()
     {
@@ -32,6 +33,25 @@ public class Player : MonoBehaviour
         if(transform.position.x > 20.322f)
         {
             this.transform.position = new Vector3(20.322f, transform.position.y, transform.position.z);
+        }
+
+        if(Input.GetKey(KeyCode.Mouse0))
+        {
+            Shoot();
+        }
+    }
+
+    void Shoot()
+    {
+        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        RaycastHit hit;
+        if (Physics.Raycast(ray, out hit, 100))
+        {
+            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            if(enemy != null)
+            {
+                enemy.TakeDamage(damage);
+            }
         }
     }
 }
