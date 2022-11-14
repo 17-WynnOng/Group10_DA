@@ -24,6 +24,8 @@ public class Enemy : MonoBehaviour
     {
         health -= amount;
 
+        Debug.Log("Hit");
+
         if (health <= 0f)
         {
             Death();
