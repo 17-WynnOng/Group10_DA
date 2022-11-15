@@ -1438,11 +1438,9 @@ MonoBehaviour:
     type: 3}
   heavyenemy: {fileID: 8767689172923396722, guid: fb6eb625ac85b4c40b8ba1e8687cc1e1,
     type: 3}
-  fastenemy: {fileID: 8767689172923396722, guid: f650c7d59f9a0dc4baf00b66a2915ecd,
-    type: 3}
   normalspawnInterval: 1
   heavyspawnInterval: 5
-  fastspawnInterval: 3
+  SpawnAmount: 0
   SpawnerLeftBorder: -7.5
   SpawnerRightBorder: 20
 --- !u!1 &1737910166
@@ -1671,7 +1669,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1985285599
 RectTransform:
   m_ObjectHideFlags: 0

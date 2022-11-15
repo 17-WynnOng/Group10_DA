@@ -32,6 +32,8 @@ public class GameManager : MonoBehaviour
             Instance = this;
         }
 
+        UpgradeMenu.SetActive(false);
+
         EnemiesLeft = EnemiesInWave;
 
         WaveTxt.text = "Wave " + WaveCount;
@@ -66,6 +68,9 @@ public class GameManager : MonoBehaviour
         EnemiesInWave += 5;
         spawner.SpawnAmount = GameManager.Instance.EnemiesInWave;
         EnemiesLeft = EnemiesInWave;
+
+        StartCoroutine(spawner.NormalSpawn());
+        StartCoroutine(spawner.HeavySpawn());
 
         UpgradeMenu.SetActive(false);
     }

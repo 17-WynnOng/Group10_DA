@@ -6,78 +6,68 @@ public class Spawner : MonoBehaviour
 {
     public GameObject normalenemy;
     public GameObject heavyenemy;
-    public GameObject fastenemy;
 
     public float normalspawnInterval;
     public float heavyspawnInterval;
-    public float fastspawnInterval;
 
     private float SpawnZone;
     private float timer;
+
+
     public int SpawnAmount;
     public float SpawnerLeftBorder;
     public float SpawnerRightBorder;
+
     // Start is called before the first frame update
     void Start()
     {
         SpawnAmount = GameManager.Instance.EnemiesInWave;
+
+        StartCoroutine(NormalSpawn());
+
+
+        StartCoroutine(HeavySpawn());
     }
 
     // Update is called once per frame
     void Update()
     {
-        timer += Time.deltaTime;
-
-       if (timer > normalspawnInterval)
-       {
-            NormalSpawn();
-
-            timer = 0;
-       }
-
-       if (timer > heavyspawnInterval)
-       {
-
-
-       }
+ 
     }
 
-    public void NormalSpawn()
+    public IEnumerator NormalSpawn()
     {
+        yield return new WaitForSeconds(normalspawnInterval);
+
         if (SpawnAmount > 0)
         {
             SpawnAmount--;
 
             SpawnZone = Random.Range(SpawnerLeftBorder, SpawnerRightBorder);
             Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
-
             Instantiate(normalenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
+
+            StartCoroutine(NormalSpawn());
         }
     }
 
-    public void HeavySpawn()
+    public IEnumerator HeavySpawn()
     {
+        yield return new WaitForSeconds(heavyspawnInterval);
+
         if (SpawnAmount > 0)
         {
-            SpawnAmount--;
+            if (GameManager.Instance.WaveCount > 5)
+            {
+                
+                SpawnAmount--;
 
-            SpawnZone = Random.Range(SpawnerLeftBorder, SpawnerRightBorder);
-            Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
+                SpawnZone = Random.Range(SpawnerLeftBorder, SpawnerRightBorder);
+                Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
+                Instantiate(heavyenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
 
-            Instantiate(heavyenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
-        }
-    }
-
-    public void FastSpawn()
-    {
-        if (SpawnAmount > 0)
-        {
-            SpawnAmount--;
-
-            SpawnZone = Random.Range(SpawnerLeftBorder, SpawnerRightBorder);
-            Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
-
-            Instantiate(fastenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
+                StartCoroutine(HeavySpawn());
+            }
         }
     }
 }
