@@ -49,6 +49,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         EnemiesLeftTxt.text = "Enemies Left: " + EnemiesLeft;
+
+        BaseHealthTxt.text = "Health: " + BaseHealth;
     }
 
     public void EnemyCountUpdate()

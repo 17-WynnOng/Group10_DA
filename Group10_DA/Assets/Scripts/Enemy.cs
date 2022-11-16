@@ -52,5 +52,7 @@ public class Enemy : MonoBehaviour
     public IEnumerator EnemyDamageInterval()
     {
         yield return new WaitForSeconds(2);
+
+        GameManager.Instance.BaseHealth -= 5;
     }
 }
