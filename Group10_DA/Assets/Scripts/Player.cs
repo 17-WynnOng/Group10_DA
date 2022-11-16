@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class Player : MonoBehaviour
 {
     public float speed;
-    public float damage = 10f;
+    public float damage;
     public float boundaryleft;
     public float boundaryright;
     public Texture2D crosshair;
@@ -14,7 +14,8 @@ public class Player : MonoBehaviour
     public Text AmmoTxt;
     public int MaxAmmo;
     private int AmmoCount;
-    public int ReloadTime;
+    public float ReloadTime;
+    public bool isReloading;
     
     // Start is called before the first frame update
     void Start()
@@ -52,7 +53,7 @@ public class Player : MonoBehaviour
 
         
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isReloading == false)
         {
             if (AmmoCount > 0)
             {
@@ -61,16 +62,15 @@ public class Player : MonoBehaviour
             }
             else
             {
-                AmmoCount = 0;
                 AmmoTxt.text = "reload";
+                AmmoCount = 0;
             }
         }
 
-        if (Input.GetKeyDown(KeyCode.R))
+        if (Input.GetKeyDown(KeyCode.R) && isReloading == false)
         {
-            
+            isReloading = true;
             StartCoroutine(Reload(ReloadTime));
-            
         }
     }
 
@@ -94,13 +94,15 @@ public class Player : MonoBehaviour
         }
     }
 
-    IEnumerator Reload(int time)
+    IEnumerator Reload(float time)
     {
-        AmmoTxt.text ="reloading";
+
+        AmmoTxt.text = "reloading";
 
         yield return new WaitForSeconds(time);
 
         AmmoCount = MaxAmmo;
         AmmoTxt.text = "" + AmmoCount;
+        isReloading = false;
     }
 }

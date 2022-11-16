@@ -17,7 +17,6 @@ public class Enemy : MonoBehaviour
     private bool isAttacking;
 
     public Animator enemyanim;
-
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +27,17 @@ public class Enemy : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+
+        if (GameManager.Instance.DifficultyIncrement > 2)
+        {
+            GameManager.Instance.DifficultyIncrement = 0;
+
+            health += 2;
+
+            speed += 1;
+
+            DamageAmount += 1;
+        }
     }
 
     public void TakeDamage (float amount)

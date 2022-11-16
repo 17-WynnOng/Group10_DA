@@ -18,6 +18,7 @@ public class GameManager : MonoBehaviour
     public GameObject UpgradeMenu;
 
     public Spawner spawner;
+    public Player player;
 
     public Text UpgradePointsTxt;
     public int UpgradePoints;
@@ -25,7 +26,14 @@ public class GameManager : MonoBehaviour
     public Text BaseHealthTxt;
     public int BaseHealth;
 
-    
+    public Text DmgLvlTxt;
+    public Text SpeedLvlTxt;
+    public Text ReloadLvlTxt;
+    public Text BaseHealTxt;
+    public Text MaxAmmoUpgradeTxt;
+
+
+    public int DifficultyIncrement;
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -44,6 +52,12 @@ public class GameManager : MonoBehaviour
         EnemiesLeft = EnemiesInWave;
 
         WaveTxt.text = "Wave " + WaveCount;
+
+        DmgLvlTxt.text = "damage: " + player.damage;
+        SpeedLvlTxt.text = "movement speed: " + player.speed;
+        ReloadLvlTxt.text = "reload speed: " + player.ReloadTime;
+        MaxAmmoUpgradeTxt.text = "ammo capacity: " + player.MaxAmmo;
+        BaseHealTxt.text = "base hp: " + BaseHealth;
     }
 
     // Update is called once per frame
@@ -60,9 +74,7 @@ public class GameManager : MonoBehaviour
 
         if (EnemiesLeft <= 0)
         {
-            Time.timeScale = 0;
-
-            UpgradeMenu.SetActive(true);
+            StartCoroutine(WaveEnd(2));
         }
     }
 
@@ -73,6 +85,10 @@ public class GameManager : MonoBehaviour
         WaveCount += 1;
         WaveTxt.text = "Wave " + WaveCount;
 
+        DifficultyIncrement++;
+
+        UpgradePoints += 3;
+
         EnemiesInWave += 5;
         spawner.SpawnAmount = GameManager.Instance.EnemiesInWave;
         EnemiesLeft = EnemiesInWave;
@@ -81,5 +97,71 @@ public class GameManager : MonoBehaviour
         StartCoroutine(spawner.HeavySpawn());
 
         UpgradeMenu.SetActive(false);
+    }
+
+    public void UpgradeDmg()
+    {
+        if (UpgradePoints > 0)
+        {
+            UpgradePoints -= 1;
+            player.damage += 0.5f;
+            DmgLvlTxt.text = "damage: " + player.damage;
+            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+        }
+    }
+
+    public void UpgradeSpeed()
+    {
+        if (UpgradePoints > 0)
+        {
+            UpgradePoints -= 1;
+            player.speed += 0.5f;
+            SpeedLvlTxt.text = "movement speed: " + player.speed;
+            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+        }
+    }
+
+    public void UpgradeReload()
+    {
+        if (UpgradePoints > 0)
+        {
+            UpgradePoints -= 1;
+            player.ReloadTime -= 0.2f;
+            ReloadLvlTxt.text = "reload speed: " + player.ReloadTime;
+            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+        }
+    }
+
+    public void BaseHeal()
+    {
+        if (UpgradePoints > 0)
+        {
+            UpgradePoints -= 1;
+            BaseHealth += BaseHealth / 100 * 10;
+            BaseHealTxt.text = "base hp: " + BaseHealth;
+            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+        }
+    }
+
+    public void UpgradeMaxAmmo()
+    {
+        if (UpgradePoints > 0)  
+        {
+            UpgradePoints -= 1;
+            player.MaxAmmo += 2;
+            MaxAmmoUpgradeTxt.text = "ammo capacity: " + player.MaxAmmo;
+            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+        }
+    }
+
+    public IEnumerator WaveEnd(float interval)
+    {
+        yield return new WaitForSeconds(interval);
+
+        Time.timeScale = 0;
+
+        UpgradeMenu.SetActive(true);
+
+        UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
     }
 }
