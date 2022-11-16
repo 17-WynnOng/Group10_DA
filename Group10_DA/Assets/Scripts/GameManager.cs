@@ -52,6 +52,16 @@ public class GameManager : MonoBehaviour
         EnemiesLeftTxt.text = "Enemies: " + EnemiesLeft;
 
         BaseHealthTxt.text = "Health: " + BaseHealth;
+
+        if(WaveCount >= 10)
+        {
+            SceneManager.LoadScene("WinScene");
+        }
+
+        if(BaseHealth <= 0)
+        {
+            SceneManager.LoadScene("LoseScene");
+        }
     }
 
     public void EnemyCountUpdate()
