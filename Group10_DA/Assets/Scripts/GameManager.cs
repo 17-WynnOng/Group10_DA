@@ -19,6 +19,9 @@ public class GameManager : MonoBehaviour
 
     public Spawner spawner;
 
+    public Text UpgradePointsTxt;
+    public int UpgeadePoints;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
