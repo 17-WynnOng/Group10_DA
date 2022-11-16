@@ -8,10 +8,12 @@ public class Enemy : MonoBehaviour
 
     public float health = 50f;
 
+    public static GameManager gameManager;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        gameManager = FindObjectOfType<GameManager>();
     }
 
     // Update is called once per frame
@@ -35,5 +37,7 @@ public class Enemy : MonoBehaviour
     void Death()
     {
         Destroy(gameObject);
+
+        GameManager.Instance.EnemyCountUpdate();
     }
 }
