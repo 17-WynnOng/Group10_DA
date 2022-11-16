@@ -20,7 +20,10 @@ public class GameManager : MonoBehaviour
     public Spawner spawner;
 
     public Text UpgradePointsTxt;
-    public int UpgeadePoints;
+    public int UpgradePoints;
+
+    public Text BaseHealthTxt;
+    public int BaseHealth;
 
     private void Awake()
     {
@@ -65,7 +68,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         WaveCount += 1;
-        WaveTxt.text = "Wave" + WaveCount;
+        WaveTxt.text = "Wave " + WaveCount;
 
 
         EnemiesInWave += 5;
