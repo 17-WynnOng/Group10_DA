@@ -53,9 +53,9 @@ public class GameManager : MonoBehaviour
 
         WaveTxt.text = "Wave " + WaveCount;
 
-        DmgLvlTxt.text = "damage: " + player.damage;
+        DmgLvlTxt.text = "damage lvl: " + player.damage;
         SpeedLvlTxt.text = "movement speed: " + player.speed;
-        ReloadLvlTxt.text = "reload speed: " + player.ReloadTime;
+        ReloadLvlTxt.text = "reload speed: " + player.ReloadTime +"s";
         MaxAmmoUpgradeTxt.text = "ammo capacity: " + player.MaxAmmo;
         BaseHealTxt.text = "base hp: " + BaseHealth;
     }
@@ -92,7 +92,7 @@ public class GameManager : MonoBehaviour
     {
         Time.timeScale = 1;
 
-        WaveCount += 1;
+        WaveCount++;
         WaveTxt.text = "Wave " + WaveCount;
 
         DifficultyIncrement++;
@@ -113,10 +113,17 @@ public class GameManager : MonoBehaviour
     {
         if (UpgradePoints > 0)
         {
-            UpgradePoints -= 1;
-            player.damage += 0.5f;
-            DmgLvlTxt.text = "damage: " + player.damage;
-            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            if (player.damage < 5)
+            {
+                UpgradePoints -= 2;
+                player.damage += 1f;
+                DmgLvlTxt.text = "damage lvl: " + player.damage;
+                UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            }
+            else
+            {
+                DmgLvlTxt.text = "damage lvl: max";
+            }
         }
     }
 
@@ -137,7 +144,7 @@ public class GameManager : MonoBehaviour
         {
             UpgradePoints -= 1;
             player.ReloadTime -= 0.2f;
-            ReloadLvlTxt.text = "reload speed: " + player.ReloadTime;
+            ReloadLvlTxt.text = "reload speed: " + player.ReloadTime + " s";
             UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
         }
     }

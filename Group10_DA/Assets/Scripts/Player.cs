@@ -81,7 +81,7 @@ public class Player : MonoBehaviour
         AmmoCount--;
         if (Physics.Raycast(ray, out hit, 100))    
         {
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            EnemyScript enemy = hit.transform.GetComponent<EnemyScript>();
 
             if (enemy != null)
             {

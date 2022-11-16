@@ -2,11 +2,11 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Enemy : MonoBehaviour
+public class EnemyScript : MonoBehaviour
 {
     public float speed;
 
-    public float health = 50f;
+    public float health;
 
     public static GameManager gameManager;
 
@@ -21,23 +21,13 @@ public class Enemy : MonoBehaviour
     void Start()
     {
         gameManager = FindObjectOfType<GameManager>();
+
     }
 
     // Update is called once per frame
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
-
-        if (GameManager.Instance.DifficultyIncrement > 2)
-        {
-            GameManager.Instance.DifficultyIncrement = 0;
-
-            health += 2;
-
-            speed += 1;
-
-            DamageAmount += 1;
-        }
     }
 
     public void TakeDamage (float amount)

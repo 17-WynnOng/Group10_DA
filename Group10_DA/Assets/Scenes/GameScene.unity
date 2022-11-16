@@ -3754,7 +3754,7 @@ MonoBehaviour:
     m_HorizontalOverflow: 1
     m_VerticalOverflow: 0
     m_LineSpacing: 1
-  m_Text: 'damage:'
+  m_Text: 'damage lvl:'
 --- !u!222 &1198507677
 CanvasRenderer:
   m_ObjectHideFlags: 0
@@ -4675,7 +4675,7 @@ MonoBehaviour:
   ReloadLvlTxt: {fileID: 325511023}
   BaseHealTxt: {fileID: 1371785404}
   MaxAmmoUpgradeTxt: {fileID: 1439253918}
-  DifficultyIncrement: 0
+  DifficultyIncrement: 2
 --- !u!4 &1440613272
 Transform:
   m_ObjectHideFlags: 0
