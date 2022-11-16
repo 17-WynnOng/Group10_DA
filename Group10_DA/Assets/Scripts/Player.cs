@@ -62,6 +62,7 @@ public class Player : MonoBehaviour
             else
             {
                 AmmoCount = 0;
+                AmmoTxt.text = "reload";
             }
         }
 
