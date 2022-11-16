@@ -19,6 +19,12 @@ public class GameManager : MonoBehaviour
 
     public Spawner spawner;
 
+    public Text UpgradePointsTxt;
+    public int UpgradePoints;
+
+    public Text BaseHealthTxt;
+    public int BaseHealth;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -43,6 +49,8 @@ public class GameManager : MonoBehaviour
     void Update()
     {
         EnemiesLeftTxt.text = "Enemies Left: " + EnemiesLeft;
+
+        BaseHealthTxt.text = "Health: " + BaseHealth;
     }
 
     public void EnemyCountUpdate()
@@ -62,7 +70,7 @@ public class GameManager : MonoBehaviour
         Time.timeScale = 1;
 
         WaveCount += 1;
-        WaveTxt.text = "Wave" + WaveCount;
+        WaveTxt.text = "Wave " + WaveCount;
 
 
         EnemiesInWave += 5;

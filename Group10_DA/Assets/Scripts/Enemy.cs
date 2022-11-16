@@ -40,4 +40,19 @@ public class Enemy : MonoBehaviour
 
         GameManager.Instance.EnemyCountUpdate();
     }
+
+    public void OnCollisionStay(Collision other)
+    {
+        if(other.gameObject.tag == "Wall")
+        {
+            speed = 0;
+        }
+    }
+
+    public IEnumerator EnemyDamageInterval()
+    {
+        yield return new WaitForSeconds(2);
+
+        GameManager.Instance.BaseHealth -= 5;
+    }
 }
