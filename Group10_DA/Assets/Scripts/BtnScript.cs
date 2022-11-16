@@ -19,6 +19,16 @@ public class BtnScript : MonoBehaviour
 
     public void startBtn()
     {
-        SceneManager.LoadScene("SampleScene");
+        SceneManager.LoadScene("GameScene");
+    }
+
+    public void BackBtn()
+    {
+        SceneManager.LoadScene("Menu");
+    }
+
+    public void CreditsBtn()
+    {
+        SceneManager.LoadScene("CreditScene");
     }
 }
