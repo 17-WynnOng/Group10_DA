@@ -25,6 +25,7 @@ public class GameManager : MonoBehaviour
     public Text BaseHealthTxt;
     public int BaseHealth;
 
+    
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -48,7 +49,7 @@ public class GameManager : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        EnemiesLeftTxt.text = "Enemies Left: " + EnemiesLeft;
+        EnemiesLeftTxt.text = "Enemies: " + EnemiesLeft;
 
         BaseHealthTxt.text = "Health: " + BaseHealth;
     }
@@ -71,7 +72,6 @@ public class GameManager : MonoBehaviour
 
         WaveCount += 1;
         WaveTxt.text = "Wave " + WaveCount;
-
 
         EnemiesInWave += 5;
         spawner.SpawnAmount = GameManager.Instance.EnemiesInWave;

@@ -10,6 +10,14 @@ public class Enemy : MonoBehaviour
 
     public static GameManager gameManager;
 
+    public int DamageInterval;
+
+    public int DamageAmount;
+
+    private bool isAttacking;
+
+    public Animator enemyanim;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -41,18 +49,22 @@ public class Enemy : MonoBehaviour
         GameManager.Instance.EnemyCountUpdate();
     }
 
-    public void OnCollisionStay(Collision other)
+    public void OnCollisionEnter(Collision other)
     {
+
         if(other.gameObject.tag == "Wall")
         {
             speed = 0;
+
+            InvokeRepeating("EnemyDamageInterval", 1, DamageInterval);
         }
     }
 
-    public IEnumerator EnemyDamageInterval()
+    public void EnemyDamageInterval()
     {
-        yield return new WaitForSeconds(2);
 
-        GameManager.Instance.BaseHealth -= 5;
+        GameManager.Instance.BaseHealth -= DamageAmount;
+
+        enemyanim.SetTrigger("IsAttacking");
     }
 }
