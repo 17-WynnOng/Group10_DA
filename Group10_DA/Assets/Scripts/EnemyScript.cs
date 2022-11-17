@@ -17,6 +17,11 @@ public class EnemyScript : MonoBehaviour
     private bool isAttacking;
 
     public Animator enemyanim;
+
+    public AudioSource audiosource;
+    public AudioClip movement;
+    public AudioClip punch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -28,6 +33,7 @@ public class EnemyScript : MonoBehaviour
     void Update()
     {
         transform.position += transform.forward * speed * Time.deltaTime;
+        audiosource.PlayOneShot(movement);
     }
 
     public void TakeDamage (float amount)
@@ -66,5 +72,7 @@ public class EnemyScript : MonoBehaviour
         GameManager.Instance.BaseHealth -= DamageAmount;
 
         enemyanim.SetTrigger("IsAttacking");
+
+        audiosource.PlayOneShot(punch);
     }
 }
