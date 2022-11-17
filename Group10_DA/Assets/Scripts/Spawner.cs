@@ -27,6 +27,8 @@ public class Spawner : MonoBehaviour
 
 
         StartCoroutine(HeavySpawn());
+        
+        
     }
 
     // Update is called once per frame
@@ -42,11 +44,19 @@ public class Spawner : MonoBehaviour
         if (SpawnAmount > 0)
         {
             SpawnAmount--;
-
             SpawnZone = Random.Range(SpawnerLeftBorder, SpawnerRightBorder);
+            
+            if(GameManager.Instance.DifficultyIncrement >= 2)
+            {
+                normalenemy.GetComponent<EnemyScript>().health += 2;
+                normalenemy.GetComponent<EnemyScript>().speed += 1;
+                normalenemy.GetComponent<EnemyScript>().DamageAmount += 1;
+            }
+            
             Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
             Instantiate(normalenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
 
+            
             StartCoroutine(NormalSpawn());
         }
     }
@@ -61,8 +71,15 @@ public class Spawner : MonoBehaviour
             {
                 
                 SpawnAmount--;
-
                 SpawnZone = Random.Range(SpawnerLeftBorder, SpawnerRightBorder);
+
+                if (GameManager.Instance.DifficultyIncrement >= 2)
+                {
+                    heavyenemy.GetComponent<EnemyScript>().health += 2;
+                    heavyenemy.GetComponent<EnemyScript>().speed += 1;
+                    heavyenemy.GetComponent<EnemyScript>().DamageAmount += 1;
+                }
+
                 Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
                 Instantiate(heavyenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
 
