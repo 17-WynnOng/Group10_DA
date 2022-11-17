@@ -16,6 +16,10 @@ public class Player : MonoBehaviour
     private int AmmoCount;
     public float ReloadTime;
     public bool isReloading;
+
+    public AudioSource audiosource;
+    public AudioClip reload;
+    public AudioClip shoot;
     
     // Start is called before the first frame update
     void Start()
@@ -71,6 +75,7 @@ public class Player : MonoBehaviour
         {
             isReloading = true;
             StartCoroutine(Reload(ReloadTime));
+            audiosource.PlayOneShot(reload);
         }
     }
 
@@ -79,6 +84,7 @@ public class Player : MonoBehaviour
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         AmmoCount--;
+        audiosource.PlayOneShot(shoot);
         if (Physics.Raycast(ray, out hit, 100))    
         {
             EnemyScript enemy = hit.transform.GetComponent<EnemyScript>();
