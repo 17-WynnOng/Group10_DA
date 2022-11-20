@@ -14,12 +14,11 @@ public class EnemyScript : MonoBehaviour
 
     public int DamageAmount;
 
-    private bool isAttacking;
-
     public Animator enemyanim;
 
     public AudioSource audiosource;
-    public AudioClip punch;
+    public AudioClip normalpunch;
+    public AudioClip[] normalfootsteps;
 
     // Start is called before the first frame update
     void Start()
@@ -72,8 +71,13 @@ public class EnemyScript : MonoBehaviour
         enemyanim.SetTrigger("IsAttacking");
     }
 
-    public void EnemyPunchSound()
+    public void NormalEnemyPunchSound()
     {
-       audiosource.PlayOneShot(punch, 0.2f);
+       audiosource.PlayOneShot(normalpunch, 0.5f);
+    }
+
+    public void NormalEnemyFootstepSound()
+    {
+        audiosource.PlayOneShot(normalfootsteps[Random.Range(0, 4)], 1.5f);
     }
 }

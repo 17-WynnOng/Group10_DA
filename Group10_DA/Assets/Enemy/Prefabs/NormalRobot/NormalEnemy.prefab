@@ -223,9 +223,14 @@ MonoBehaviour:
   health: 5
   DamageInterval: 4
   DamageAmount: 5
-  enemyanim: {fileID: 0}
+  enemyanim: {fileID: 6639581038358048020}
   audiosource: {fileID: -6465474888041704698}
-  punch: {fileID: 8300000, guid: 0e4017b272680f14ea7682ed6072a345, type: 3}
+  normalpunch: {fileID: 8300000, guid: 0e4017b272680f14ea7682ed6072a345, type: 3}
+  normalfootsteps:
+  - {fileID: 8300000, guid: 6fbbb723ac26d074aa8366fe53a4e45a, type: 3}
+  - {fileID: 8300000, guid: 53b2c87f1f3b08643957cb1d36193bd0, type: 3}
+  - {fileID: 8300000, guid: e1571242579d9c64f8b1079e9712d7aa, type: 3}
+  - {fileID: 8300000, guid: af6958faf4364c941bd8fbbc4f2633ad, type: 3}
 --- !u!82 &-6465474888041704698
 AudioSource:
   m_ObjectHideFlags: 0
@@ -239,7 +244,7 @@ AudioSource:
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: 1
-  m_Pitch: 1
+  m_Pitch: 0.8
   Loop: 0
   Mute: 0
   Spatialize: 0
