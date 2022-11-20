@@ -4455,7 +4455,7 @@ MonoBehaviour:
   spawner: {fileID: 1732115817}
   player: {fileID: 801717222}
   UpgradePointsTxt: {fileID: 1015619464}
-  UpgradePoints: 99
+  UpgradePoints: 2
   BaseHealthTxt: {fileID: 280563300}
   BaseHealth: 200
   DmgLvlTxt: {fileID: 1198507676}
@@ -6166,7 +6166,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!224 &1985285599
 RectTransform:
   m_ObjectHideFlags: 0
