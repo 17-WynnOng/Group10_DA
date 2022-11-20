@@ -51,12 +51,13 @@ public class Spawner : MonoBehaviour
                 normalenemy.GetComponent<EnemyScript>().health += 2;
                 normalenemy.GetComponent<EnemyScript>().speed += 1;
                 normalenemy.GetComponent<EnemyScript>().DamageAmount += 1;
+
+                GameManager.Instance.DifficultyIncrement = 0;
             }
             
             Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);
             Instantiate(normalenemy, RandomSpawn, Quaternion.Euler(0, 180, 0));
 
-            
             StartCoroutine(NormalSpawn());
         }
     }
@@ -78,6 +79,8 @@ public class Spawner : MonoBehaviour
                     heavyenemy.GetComponent<EnemyScript>().health += 2;
                     heavyenemy.GetComponent<EnemyScript>().speed += 1;
                     heavyenemy.GetComponent<EnemyScript>().DamageAmount += 1;
+
+                    GameManager.Instance.DifficultyIncrement = 0;
                 }
 
                 Vector3 RandomSpawn = new Vector3(SpawnZone, transform.position.y, transform.position.z);

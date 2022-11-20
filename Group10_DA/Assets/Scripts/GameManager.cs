@@ -34,6 +34,7 @@ public class GameManager : MonoBehaviour
 
 
     public int DifficultyIncrement;
+
     private void Awake()
     {
         // If there is an instance, and it's not me, delete myself.
@@ -71,7 +72,6 @@ public class GameManager : MonoBehaviour
         {
             SceneManager.LoadScene("WinScene");
         }
-
         if(BaseHealth <= 0)
         {
             SceneManager.LoadScene("LoseScene");
@@ -97,7 +97,7 @@ public class GameManager : MonoBehaviour
 
         DifficultyIncrement++;
 
-        UpgradePoints += 3;
+        UpgradePoints += 2;
 
         EnemiesInWave += 5;
         spawner.SpawnAmount = GameManager.Instance.EnemiesInWave;
@@ -151,12 +151,15 @@ public class GameManager : MonoBehaviour
 
     public void BaseHeal()
     {
-        if (UpgradePoints > 0)
+        if (UpgradePoints > 0 )
         {
-            UpgradePoints -= 1;
-            BaseHealth += BaseHealth / 100 * 10;
-            BaseHealTxt.text = "base hp: " + BaseHealth;
-            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            if (BaseHealth <= 200)
+            {
+                UpgradePoints -= 1;
+                BaseHealth += BaseHealth / 100 * 10;
+                BaseHealTxt.text = "base hp: " + BaseHealth;
+                UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            }
         }
     }
 
