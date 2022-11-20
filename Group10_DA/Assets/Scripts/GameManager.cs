@@ -68,7 +68,7 @@ public class GameManager : MonoBehaviour
 
         BaseHealthTxt.text = "Health: " + BaseHealth;
 
-        if(WaveCount >= 10)
+        if(WaveCount > 10)
         {
             SceneManager.LoadScene("WinScene");
         }
@@ -115,7 +115,7 @@ public class GameManager : MonoBehaviour
         {
             if (player.damage < 5)
             {
-                UpgradePoints -= 2;
+                UpgradePoints -= 1;
                 player.damage += 1f;
                 DmgLvlTxt.text = "damage lvl: " + player.damage;
                 UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
@@ -131,10 +131,17 @@ public class GameManager : MonoBehaviour
     {
         if (UpgradePoints > 0)
         {
-            UpgradePoints -= 1;
-            player.speed += 0.5f;
-            SpeedLvlTxt.text = "movement speed: " + player.speed;
-            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            if (player.speed < 8)
+            {
+                UpgradePoints -= 1;
+                player.speed += 0.5f;
+                SpeedLvlTxt.text = "movement speed: " + player.speed;
+                UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            }
+            else
+            {
+                SpeedLvlTxt.text = "movement speed: max";
+            }
         }
     }
 
@@ -142,10 +149,17 @@ public class GameManager : MonoBehaviour
     {
         if (UpgradePoints > 0)
         {
-            UpgradePoints -= 1;
-            player.ReloadTime -= 0.2f;
-            ReloadLvlTxt.text = "reload speed: " + player.ReloadTime + " s";
-            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            if (player.ReloadTime > 0.8f)
+            {
+                UpgradePoints -= 1;
+                player.ReloadTime -= 0.3f;
+                ReloadLvlTxt.text = "reload speed: " + player.ReloadTime + " s";
+                UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            }
+            else
+            {
+                ReloadLvlTxt.text = "reload speed: max";
+            }
         }
     }
 
@@ -153,7 +167,7 @@ public class GameManager : MonoBehaviour
     {
         if (UpgradePoints > 0 )
         {
-            if (BaseHealth <= 200)
+            if (BaseHealth < 200)
             {
                 UpgradePoints -= 1;
                 BaseHealth += BaseHealth / 100 * 10;
@@ -167,10 +181,17 @@ public class GameManager : MonoBehaviour
     {
         if (UpgradePoints > 0)  
         {
-            UpgradePoints -= 1;
-            player.MaxAmmo += 2;
-            MaxAmmoUpgradeTxt.text = "ammo capacity: " + player.MaxAmmo;
-            UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            if (player.MaxAmmo < 18)
+            {
+                UpgradePoints -= 1;
+                player.MaxAmmo += 2;
+                MaxAmmoUpgradeTxt.text = "ammo capacity: " + player.MaxAmmo;
+                UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
+            }
+            else
+            {
+                MaxAmmoUpgradeTxt.text = "ammo capacity: max";
+            }
         }
     }
 

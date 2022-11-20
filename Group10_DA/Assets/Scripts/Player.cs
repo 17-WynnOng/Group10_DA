@@ -16,6 +16,7 @@ public class Player : MonoBehaviour
     private int AmmoCount;
     public float ReloadTime;
     public bool isReloading;
+    public GameObject muzzleflash;
 
     public AudioSource audiosource;
     public AudioClip reload;
@@ -63,6 +64,7 @@ public class Player : MonoBehaviour
             {
                 Shoot();
                 AmmoTxt.text = "" + AmmoCount;
+                muzzleflash.SetActive(true);
             }
             else
             {
@@ -70,12 +72,15 @@ public class Player : MonoBehaviour
                 AmmoCount = 0;
             }
         }
+        else
+        {
+            muzzleflash.SetActive(false);
+        }
 
         if (Input.GetKeyDown(KeyCode.R) && isReloading == false)
         {
             isReloading = true;
             StartCoroutine(Reload(ReloadTime));
-            
         }
     }
 
@@ -94,7 +99,6 @@ public class Player : MonoBehaviour
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
-                
             }
             
             GameObject gameObject = Instantiate(hiteffect, hit.point, Quaternion.LookRotation(hit.normal));

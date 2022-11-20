@@ -49,7 +49,7 @@ public class Spawner : MonoBehaviour
             if(GameManager.Instance.DifficultyIncrement >= 2)
             {
                 normalenemy.GetComponent<EnemyScript>().health += 2;
-                normalenemy.GetComponent<EnemyScript>().speed += 1;
+                normalenemy.GetComponent<EnemyScript>().speed += 0.3f;
                 normalenemy.GetComponent<EnemyScript>().DamageAmount += 1;
 
                 GameManager.Instance.DifficultyIncrement = 0;
@@ -68,7 +68,7 @@ public class Spawner : MonoBehaviour
 
         if (SpawnAmount > 0)
         {
-            if (GameManager.Instance.WaveCount > 5)
+            if (GameManager.Instance.WaveCount >= 4)
             {
                 
                 SpawnAmount--;
@@ -76,9 +76,9 @@ public class Spawner : MonoBehaviour
 
                 if (GameManager.Instance.DifficultyIncrement >= 2)
                 {
-                    heavyenemy.GetComponent<EnemyScript>().health += 2;
-                    heavyenemy.GetComponent<EnemyScript>().speed += 1;
-                    heavyenemy.GetComponent<EnemyScript>().DamageAmount += 1;
+                    heavyenemy.GetComponent<EnemyScript>().health += 5;
+                    heavyenemy.GetComponent<EnemyScript>().speed += 0.5f;
+                    heavyenemy.GetComponent<EnemyScript>().DamageAmount += 2;
 
                     GameManager.Instance.DifficultyIncrement = 0;
                 }

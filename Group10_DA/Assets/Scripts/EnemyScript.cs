@@ -10,7 +10,7 @@ public class EnemyScript : MonoBehaviour
 
     public static GameManager gameManager;
 
-    public int DamageInterval;
+    public float DamageInterval;
 
     public int DamageAmount;
 
@@ -19,7 +19,8 @@ public class EnemyScript : MonoBehaviour
     public AudioSource audiosource;
     public AudioClip normalpunch;
     public AudioClip[] normalfootsteps;
-
+    public AudioClip heavyfootsteps;
+    public AudioClip heavypunch;
     // Start is called before the first frame update
     void Start()
     {
@@ -73,11 +74,21 @@ public class EnemyScript : MonoBehaviour
 
     public void NormalEnemyPunchSound()
     {
-       audiosource.PlayOneShot(normalpunch, 0.5f);
+       audiosource.PlayOneShot(normalpunch, 0.7f);
     }
 
     public void NormalEnemyFootstepSound()
     {
-        audiosource.PlayOneShot(normalfootsteps[Random.Range(0, 4)], 1.5f);
+        audiosource.PlayOneShot(normalfootsteps[Random.Range(0, 4)], 1.7f);
+    }
+
+    public void HeavyEnemyFootstepSound()
+    {
+        audiosource.PlayOneShot(heavyfootsteps, 0.8f);
+    }
+
+    public void HeavyEnemyPunchSound()
+    {
+        audiosource.PlayOneShot(heavypunch, 0.8f);
     }
 }
