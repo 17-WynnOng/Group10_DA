@@ -1,14 +1,14 @@
 ﻿using System.Collections;
 using NUnit.Framework;
 using UnityEngine;
+using System.Collections.Generic;
 using UnityEngine.TestTools;
 
 namespace Tests
 {
    
-    public class WynnOngTestSuite
-    {
-
+    public class WynnOngTestSuite 
+    { 
         public bool MoveLeft = true;
         public bool MoveRight = true;
         public bool Shooting = true;
