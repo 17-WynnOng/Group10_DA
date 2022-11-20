@@ -1,7 +1,9 @@
 {
     "name": "17_WynnOng_TestSuite",
     "references": [
-        "GameASSembly"
+        "GameASSembly",
+        "UnityEditor.TestRunner",
+        "UnityEngine.TestRunner"
     ],
     "includePlatforms": [],
     "excludePlatforms": [],
