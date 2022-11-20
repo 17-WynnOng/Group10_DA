@@ -85,7 +85,6 @@ public class Player : MonoBehaviour
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
         AmmoCount--;
         audiosource.PlayOneShot(shoot);
-
         if (Physics.Raycast(ray, out hit, 100))    
         {
             EnemyScript enemy = hit.transform.GetComponent<EnemyScript>();
