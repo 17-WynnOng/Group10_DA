@@ -1,5 +1,5 @@
 {
-    "name": "17_WynnOng_TestSuite",
+    "name": "Group10_DA_Tests",
     "references": [
         "GameASSembly",
         "UnityEditor.TestRunner",
