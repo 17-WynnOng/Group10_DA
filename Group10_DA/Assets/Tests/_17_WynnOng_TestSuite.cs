@@ -7,7 +7,7 @@ using UnityEngine.TestTools;
 namespace Tests
 {
    
-    public class WynnOngTestSuite 
+    public class _17_WynnOng_TestSuite 
     { 
         public bool MoveLeft = true;
         public bool MoveRight = true;

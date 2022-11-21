@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         SpeedLvlTxt.text = "movement speed: " + player.speed;
         ReloadLvlTxt.text = "reload speed: " + player.ReloadTime +"s";
         MaxAmmoUpgradeTxt.text = "ammo capacity: " + player.MaxAmmo;
-        BaseHealTxt.text = "base hp: " + BaseHealth;
+        
     }
 
     // Update is called once per frame
@@ -68,7 +68,9 @@ public class GameManager : MonoBehaviour
 
         BaseHealthTxt.text = "Health: " + BaseHealth;
 
-        if(WaveCount > 10)
+        BaseHealTxt.text = "base hp: " + BaseHealth;
+
+        if (WaveCount > 10)
         {
             SceneManager.LoadScene("WinScene");
         }
@@ -170,7 +172,7 @@ public class GameManager : MonoBehaviour
             if (BaseHealth < 200)
             {
                 UpgradePoints -= 1;
-                BaseHealth += BaseHealth / 100 * 10;
+                BaseHealth += 30;
                 BaseHealTxt.text = "base hp: " + BaseHealth;
                 UpgradePointsTxt.text = "upgrade points: " + UpgradePoints;
             }
