@@ -17,7 +17,7 @@ namespace Tests
         [Test]
         public void StartBtn()
         {
-            SceneManager.LoadScene("GameScene", LoadSceneMode.Single);
+            
         }
 
         [Test]
