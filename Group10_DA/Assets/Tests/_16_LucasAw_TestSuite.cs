@@ -6,7 +6,7 @@ using UnityEngine.TestTools;
 
 namespace Tests
 {
-    public class LucasAwTestSuite
+    public class _16_LucasAw_TestSuite
     {
 
         public bool normalrobotmovement = true;
