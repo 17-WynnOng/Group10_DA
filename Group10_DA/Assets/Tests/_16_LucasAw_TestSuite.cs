@@ -8,34 +8,49 @@ namespace Tests
 {
     public class _16_LucasAw_TestSuite
     {
+        private float PlayerDMG = 1f;
+        private float PlayerSPEED = 4f;
+        private float PlayerRELOAD = 2f;
+        private float PlayerAMMO = 12f;
 
-        public bool normalrobotmovement = true;
-        public bool heavyrobotmovement = true;
-        public bool normalrobotpunch = true;
-        public bool heavyrobotpunch = true;
-        
         [Test]
-        public void NormalRobotMovementSFX()
+        public void UpgradeDmg()
         {
-            Assert.AreEqual(normalrobotmovement, true);
+            if(PlayerDMG < 5f)
+            {
+                PlayerDMG = 1f + 1f;
+                Assert.AreEqual(PlayerDMG, 2);
+            }        
         }
 
         [Test]
-        public void HeavyRobotMovementSFX()
+        public void UpgradeSpeed()
         {
-            Assert.AreEqual(heavyrobotmovement, true);
+            if(PlayerSPEED < 8)
+            {
+                PlayerSPEED = 4f + 0.5f;
+                Assert.AreEqual(PlayerSPEED, 4.5f);
+            }            
         }
 
         [Test]
-        public void NormalRobotPunchSFX()
+        public void UpgradeReload()
         {
-            Assert.AreEqual(normalrobotpunch, true);
+            if(PlayerRELOAD > 0.8f)
+            {
+                PlayerRELOAD = 2f - 0.3f;
+                Assert.AreEqual(PlayerRELOAD, 1.7f);
+            }           
         }
 
         [Test]
-        public void HeavyRobotPunchSFX()
+        public void UpgradeAmmo()
         {
-            Assert.AreEqual(heavyrobotpunch, true);
+            if (PlayerAMMO < 18f)
+            {
+                PlayerAMMO = 12f + 2f;
+                Assert.AreEqual(PlayerAMMO, 14f);
+            }
         }
     }
 }
