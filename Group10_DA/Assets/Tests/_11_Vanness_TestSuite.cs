@@ -9,33 +9,36 @@ namespace Tests
 {
     public class _11_Vanness_TestSuite
     {
-        public bool MoveLeft = true;
-        public bool MoveRight = true;
-        public bool Shooting = true;
-        public bool Reload = true;
+        private bool UpgradeMenu = false;
 
         [Test]
         public void StartBtn()
         {
-            
+            SceneManager.LoadScene("GameScene");
+
+            Assert.AreEqual(SceneManager.GetSceneByBuildIndex(1).name, "GameScene");
         }
 
         [Test]
         public void InstructionBtn()
         {
-            SceneManager.LoadScene("CreditScene", LoadSceneMode.Single);
+            SceneManager.LoadScene("CreditScene");
+
+            Assert.AreEqual(SceneManager.GetSceneByBuildIndex(2).name, "CreditScene");
         }
 
         [Test]
         public void BackBtn()
         {
-            SceneManager.LoadScene("Menu", LoadSceneMode.Single);
+            SceneManager.LoadScene("Menu");
+
+            Assert.AreEqual(SceneManager.GetSceneByBuildIndex(0).name, "Menu");
         }
 
         [Test]
-        public void PlayerReload()
+        public void NextWaveBtn()
         {
-            Assert.AreEqual(Reload, true);
+            Assert.AreEqual(UpgradeMenu, false);
         }
     }
 }

@@ -9,33 +9,58 @@ namespace Tests
    
     public class _17_WynnOng_TestSuite 
     { 
-        public bool MoveLeft = true;
-        public bool MoveRight = true;
-        public bool Shooting = true;
-        public bool Reload = true;
+
+        private Player player;
+        private GameObject testObject;
+        
+        [SetUp]
+        public void SetUp()
+        {
+            testObject = GameObject.Instantiate(new GameObject());
+            
+        }
 
         [Test]
         public void PlayerMoveLeft()
         {
-            Assert.AreEqual(MoveLeft, true);
+            Vector3 MoveLeft = testObject.transform.position -= new Vector3(10, 0, 0);
+
+            Assert.AreNotEqual(MoveLeft, testObject.transform.position.x);
         }
 
         [Test]
         public void PlayerMoveRight()
         {
-            Assert.AreEqual(MoveRight, true);
+            Vector3 MoveRight = testObject.transform.position += new Vector3(10, 0, 0);
+
+            Assert.AreNotEqual(MoveRight, testObject.transform.position.x);
         }
 
         [Test]
         public void PlayerShoot()
         {
-            Assert.AreEqual(Shooting, true);
+            int CurrentAmmo;
+            int MaxAmmo = 20;
+
+            CurrentAmmo = MaxAmmo;
+
+            CurrentAmmo--;
+
+            Assert.Less(CurrentAmmo, MaxAmmo);
         }
 
         [Test]
         public void PlayerReload()
         {
-            Assert.AreEqual(Reload, true);
+            int CurrentAmmo = 10;
+            int MaxAmmo = 20;
+
+            if (CurrentAmmo < MaxAmmo)
+            {
+                CurrentAmmo = MaxAmmo;
+            }
+
+            Assert.AreEqual(CurrentAmmo, MaxAmmo);
         }
     }
 }
