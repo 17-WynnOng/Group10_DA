@@ -1,18 +1,36 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Player : MonoBehaviour
 {
     public float speed;
-    public float damage = 10f;
+    public float damage;
     public float boundaryleft;
     public float boundaryright;
+    public Texture2D crosshair;
+    public GameObject hiteffect;
+    public Text AmmoTxt;
+    public int MaxAmmo;
+    private int AmmoCount;
+    public float ReloadTime;
+    public bool isReloading;
+    public GameObject muzzleflash;
+
+    public AudioSource audiosource;
+    public AudioClip reload;
+    public AudioClip shoot;
 
     // Start is called before the first frame update
     void Start()
     {
-        
+        Vector2 hotSpot = new Vector2(crosshair.width / 2f, crosshair.height / 2f);
+        Cursor.SetCursor(crosshair, hotSpot, CursorMode.ForceSoftware);
+
+        AmmoCount = MaxAmmo;
+
+        AmmoTxt.text = "" + AmmoCount;
     }
 
     // Update is called once per frame
@@ -38,9 +56,31 @@ public class Player : MonoBehaviour
             this.transform.position = new Vector3(boundaryright, transform.position.y, transform.position.z);
         }
 
-        if (Input.GetKeyDown(KeyCode.Mouse0))
+        
+
+        if (Input.GetKeyDown(KeyCode.Mouse0) && isReloading == false)
         {
-            Shoot();
+            if (AmmoCount > 0)
+            {
+                Shoot();
+                AmmoTxt.text = "" + AmmoCount;
+                muzzleflash.SetActive(true);
+            }
+            else
+            {
+                AmmoTxt.text = "reload";
+                AmmoCount = 0;
+            }
+        }
+        else
+        {
+            muzzleflash.SetActive(false);
+        }
+
+        if (Input.GetKeyDown(KeyCode.R) && isReloading == false)
+        {
+            isReloading = true;
+            StartCoroutine(Reload(ReloadTime));
         }
     }
 
@@ -48,14 +88,33 @@ public class Player : MonoBehaviour
     {
         RaycastHit hit;
         Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        AmmoCount--;
+
+        audiosource.PlayOneShot(shoot, 0.4f);
+
         if (Physics.Raycast(ray, out hit, 100))    
         {
-            Enemy enemy = hit.transform.GetComponent<Enemy>();
+            EnemyScript enemy = hit.transform.GetComponent<EnemyScript>();
 
             if (enemy != null)
             {
                 enemy.TakeDamage(damage);
             }
+            
+            GameObject gameObject = Instantiate(hiteffect, hit.point, Quaternion.LookRotation(hit.normal));
+            Destroy(gameObject, 2f);
         }
+    }
+
+    IEnumerator Reload(float time)
+    {
+
+        AmmoTxt.text = "reloading";
+        audiosource.PlayOneShot(reload, 0.3f);
+        yield return new WaitForSeconds(time);
+        
+        AmmoCount = MaxAmmo;
+        AmmoTxt.text = "" + AmmoCount;
+        isReloading = false;
     }
 }
